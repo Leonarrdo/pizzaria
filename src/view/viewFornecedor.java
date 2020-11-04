@@ -5,6 +5,16 @@
  */
 package view;
 
+import com.mysql.jdbc.StringUtils;
+import controller.fornecedorController;
+import controller.pizzaController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
+import model.fornecedor;
+import model.fornecedorTableModel;
+import model.pizza;
+
 /**
  *
  * @author Leonardo
@@ -16,6 +26,12 @@ public class viewFornecedor extends javax.swing.JFrame {
      */
     public viewFornecedor() {
         initComponents();
+        setLocationRelativeTo(null);
+        atualizaTabela();
+    }
+    
+      public void atualizaTabela(){
+        tabela.setModel(new fornecedorTableModel(new fornecedorController().listarTodos()));
     }
 
     /**
@@ -37,7 +53,7 @@ public class viewFornecedor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         buttonLimpar = new javax.swing.JButton();
         buttonEditar = new javax.swing.JButton();
         buttonNovo = new javax.swing.JButton();
@@ -59,7 +75,7 @@ public class viewFornecedor extends javax.swing.JFrame {
 
         checkAtivo.setText("Ativo");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,13 +83,33 @@ public class viewFornecedor extends javax.swing.JFrame {
                 "id", "Razão Social", "Endereço", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
 
         buttonLimpar.setText("Limpar");
+        buttonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLimparActionPerformed(evt);
+            }
+        });
 
         buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
 
         buttonNovo.setText("Novo");
+        buttonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNovoActionPerformed(evt);
+            }
+        });
 
         buttonExcluir.setText("Excluir");
 
@@ -169,6 +205,74 @@ public class viewFornecedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimparActionPerformed
+       this.limparTela();
+    }//GEN-LAST:event_buttonLimparActionPerformed
+
+    private void limparTela(){
+        textID.setText("");
+        textRazao.setText("");
+        textEndereco.setText("");
+        checkAtivo.setSelected(false);
+    }
+    
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        tabela.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabela.getSelectedRow();
+                    textID.setText(tabela.getValueAt(linha, 0).toString());
+                    textRazao.setText(tabela.getValueAt(linha, 1).toString());
+                    textEndereco.setText(tabela.getValueAt(linha, 2).toString());
+//                    checkAtivo.setSelected(tabela.getValueAt(linha, 3).toString());;
+    //                                        textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+            }
+        });  
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void buttonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoActionPerformed
+         fornecedor p = new fornecedor();
+
+        if(textRazao.equals("") || textEndereco.equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+        }else{
+            fornecedorController pc = new fornecedorController();
+            p.setRazaoSocial(textRazao.getText());
+            p.setEndereco(textEndereco.getText());
+            p.setStatus(true);
+            pc.cadastrar(p);
+        }
+        this.limparTela();
+        this.atualizaTabela();
+    }//GEN-LAST:event_buttonNovoActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+       fornecedor p = new fornecedor();
+            
+            if(textID.getText().length()<=0 ){
+                JOptionPane.showMessageDialog(null, "Valor inválido para ID");
+                return;
+            }else if( textID.equals("") || Integer.parseInt(textID.getText()) <=0) {
+                JOptionPane.showMessageDialog(null, "Valor inválido para ID");
+                return;
+            }
+
+            if(textRazao.equals("") || textEndereco.equals("") ){
+                JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+            }else{
+                fornecedorController pc = new fornecedorController();
+                p.setId(Integer.parseInt(textID.getText()));
+                p.setRazaoSocial(textRazao.getText());
+                p.setEndereco(textEndereco.getText());
+                p.setStatus(false);
+                if(checkAtivo.isSelected()){
+                    p.setStatus(true);
+                }
+                pc.alterar(p);
+            }             
+            
+            this.atualizaTabela();
+    }//GEN-LAST:event_buttonEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,7 +321,7 @@ public class viewFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField textBusca;
     private javax.swing.JTextField textEndereco;
     private javax.swing.JTextField textID;

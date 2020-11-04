@@ -40,7 +40,7 @@ public class fornecedor {
         this.endereco = endereco;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

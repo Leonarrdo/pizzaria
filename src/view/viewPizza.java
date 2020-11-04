@@ -256,6 +256,7 @@ public class viewPizza extends javax.swing.JFrame {
                 }
                 pc.alterar(p);
             }             
+            
             this.atualizaTabela();// TODO add your handling code here:
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
