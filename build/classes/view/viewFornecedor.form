@@ -246,11 +246,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonPesquisar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textBusca">
         </Component>

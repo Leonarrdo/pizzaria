@@ -39,6 +39,9 @@
           <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -59,8 +62,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="buttonAlterar" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" pref="138" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton3" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="buttonExcluir" min="-2" pref="177" max="-2" attributes="0"/>
                               </Group>
                               <Component id="textBusca" max="32767" attributes="0"/>
                           </Group>
@@ -117,7 +122,8 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="buttonAlterar" pref="47" max="32767" attributes="0"/>
                       <Component id="buttonNovo" max="32767" attributes="0"/>
-                      <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonExcluir" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -211,10 +217,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAlterarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="buttonExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonPesquisar">
           <Properties>
@@ -245,6 +254,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

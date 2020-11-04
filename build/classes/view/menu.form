@@ -54,12 +54,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="165" pref="165" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="buttonUsuarios1" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonFornecedor" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonCardapio" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonPizza" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonIngredientes" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonEventos" min="-2" pref="382" max="-2" attributes="0"/>
-                      <Component id="buttonUsuarios" min="-2" pref="382" max="-2" attributes="0"/>
                       <Component id="buttonSair" min="-2" pref="382" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
@@ -75,15 +75,15 @@
                   <Component id="buttonCardapio" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonIngredientes" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonFornecedor" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonEventos" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buttonUsuarios" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <Component id="buttonUsuarios1" min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   <Component id="buttonSair" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,21 +109,22 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingredientes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIngredientesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonEventos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eventos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonUsuarios">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="buttonSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSairActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonFornecedor">
           <Properties>
@@ -132,6 +133,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonFornecedorActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonUsuarios1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

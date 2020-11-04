@@ -13,7 +13,7 @@ public class pizza {
     private int id;
     private String nome;
     private String detalhes;
-    private int status;
+    private Boolean status;
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class pizza {
         this.detalhes = detalhes;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     

@@ -5,6 +5,18 @@
  */
 package view;
 
+import controller.cardapioController;
+import controller.cardapioController;
+import controller.cardapioController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
+import model.cardapio;
+import model.cardapioTableModel;
+import model.cardapio;
+import model.cardapioTableModel;
+import model.cardapio;
+
 /**
  *
  * @author Leonardo
@@ -17,6 +29,7 @@ public class viewCardapio extends javax.swing.JFrame {
     public viewCardapio() {
         initComponents();
         setLocationRelativeTo(null);
+        this.atualizaTabela();
     }
 
     /**
@@ -29,13 +42,13 @@ public class viewCardapio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        textID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        textDetalhes = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        checkAtivo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         buttonLimpar = new javax.swing.JButton();
         buttonBusca = new javax.swing.JButton();
@@ -43,6 +56,9 @@ public class viewCardapio extends javax.swing.JFrame {
         buttonNovo = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         textBusca = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        buttonNovo1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,19 +70,66 @@ public class viewCardapio extends javax.swing.JFrame {
 
         jLabel3.setText("Detalhes");
 
-        jCheckBox1.setText("Ativo");
+        checkAtivo.setText("Ativo");
 
         jLabel4.setText("Status");
 
         buttonLimpar.setText("Limpar");
+        buttonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLimparActionPerformed(evt);
+            }
+        });
 
         buttonBusca.setText("Pesquisar");
+        buttonBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuscaActionPerformed(evt);
+            }
+        });
 
         buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
 
         buttonNovo.setText("Novo");
+        buttonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNovoActionPerformed(evt);
+            }
+        });
 
         buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
+
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idi", "nome", "detalhes", "status"
+            }
+        ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
+
+        buttonNovo1.setText("Visualizar");
+        buttonNovo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNovo1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,34 +139,39 @@ public class viewCardapio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(textBusca))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                        .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(buttonNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,36 +185,120 @@ public class viewCardapio extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(320, 320, 320)
+                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(buttonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textBusca))
-                .addContainerGap())
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        cardapioController pc = new cardapioController();
+        cardapio p = new cardapio();
+        
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "ID não pode ser vazio");
+            return;
+        }
+        p.setId(Integer.parseInt(textID.getText()));
+        pc.excluir(p);
+        this.limparTela();
+        this.atualizaTabela();
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimparActionPerformed
+      this.limparTela();
+    }//GEN-LAST:event_buttonLimparActionPerformed
+
+    private void buttonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscaActionPerformed
+         cardapioController pc = new cardapioController();
+            cardapio p = new cardapio();
+            p.setNome(textBusca.getText());
+            p.setDetalhes(textBusca.getText());
+            this.atualizarBusca(p);
+    }//GEN-LAST:event_buttonBuscaActionPerformed
+
+    private void buttonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoActionPerformed
+        cardapio p = new cardapio();
+      
+        if(textNome.equals("") || textDetalhes.equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+        }else{
+            cardapioController pc = new cardapioController();
+            p.setNome(textNome.getText());
+            p.setDetalhes(textDetalhes.getText());
+            p.setStatus(true);
+            pc.cadastrar(p);
+        }
+        this.atualizaTabela();
+        this.limparTela();
+    }//GEN-LAST:event_buttonNovoActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+       tabela.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabela.getSelectedRow();
+                    textID.setText(tabela.getValueAt(linha, 0).toString());
+                    textNome.setText(tabela.getValueAt(linha, 1).toString());
+                    textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+            }
+        }); 
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+            cardapio p = new cardapio();
+
+            if(String.valueOf(textID.getText()).isEmpty()){
+                JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+                return;
+            }else{
+                cardapioController pc = new cardapioController();
+                p.setId(Integer.parseInt(textID.getText()));
+                p.setNome(textNome.getText());
+                p.setDetalhes(textDetalhes.getText());
+                
+                if(checkAtivo.isSelected()){
+                    p.setStatus(true);
+                }
+                pc.alterar(p);
+            }             
+            
+            this.atualizaTabela();
+            this.limparTela();
+    }//GEN-LAST:event_buttonEditarActionPerformed
+
+    private void buttonNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovo1ActionPerformed
+        // FAZER LOGICA DE VISUALIZAÇÃO
+        new cardapiosFinalizados().setVisible(true);
+    }//GEN-LAST:event_buttonNovo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +335,21 @@ public class viewCardapio extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void atualizaTabela(){
+        tabela.setModel(new cardapioTableModel(new cardapioController().listarTodos()));
+    }
+     public void atualizarBusca(cardapio p){
+        tabela.setModel(new cardapioTableModel(new cardapioController().buscar(p)));
+    }
+     public void limparTela(){
+        textID.setText("");
+        textNome.setText("");
+        textDetalhes.setText("");
+        textBusca.setText("");
+        checkAtivo.setSelected(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBusca;
@@ -190,15 +357,18 @@ public class viewCardapio extends javax.swing.JFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonNovo;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton buttonNovo1;
+    private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextField textBusca;
+    private javax.swing.JTextField textDetalhes;
+    private javax.swing.JTextField textID;
+    private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables
 }

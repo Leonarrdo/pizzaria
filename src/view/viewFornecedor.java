@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.fornecedor;
 import model.fornecedorTableModel;
 import model.pizza;
+import model.pizzaTableModel;
 
 /**
  *
@@ -112,8 +113,18 @@ public class viewFornecedor extends javax.swing.JFrame {
         });
 
         buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
 
         buttonPesquisar.setText("Pesquisar");
+        buttonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,6 +225,7 @@ public class viewFornecedor extends javax.swing.JFrame {
         textRazao.setText("");
         textEndereco.setText("");
         checkAtivo.setSelected(false);
+        textBusca.setText("");
     }
     
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
@@ -269,10 +281,40 @@ public class viewFornecedor extends javax.swing.JFrame {
                 }
                 pc.alterar(p);
             }             
-            
+            this.limparTela();
             this.atualizaTabela();
+            
     }//GEN-LAST:event_buttonEditarActionPerformed
 
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+       
+        fornecedorController pc = new fornecedorController();
+        fornecedor p = new fornecedor();
+        
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "ID não pode ser vazio");
+            return;
+        }
+        p.setId(Integer.parseInt(textID.getText()));
+        pc.excluir(p);
+        this.limparTela();
+        this.atualizaTabela(); 
+        
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
+            fornecedorController pc = new fornecedorController();
+            fornecedor p = new fornecedor();
+            p.setRazaoSocial(textBusca.getText());
+            p.setEndereco(textBusca.getText());
+            this.atualizarBusca(p);
+    }//GEN-LAST:event_buttonPesquisarActionPerformed
+
+    public void atualizarBusca(fornecedor p){
+        tabela.setModel(new fornecedorTableModel(new fornecedorController().buscar(p)));
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

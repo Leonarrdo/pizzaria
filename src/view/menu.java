@@ -34,9 +34,9 @@ public class menu extends javax.swing.JFrame {
         buttonCardapio = new javax.swing.JButton();
         buttonIngredientes = new javax.swing.JButton();
         buttonEventos = new javax.swing.JButton();
-        buttonUsuarios = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
         buttonFornecedor = new javax.swing.JButton();
+        buttonUsuarios1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -60,12 +60,20 @@ public class menu extends javax.swing.JFrame {
         });
 
         buttonIngredientes.setText("Ingredientes");
+        buttonIngredientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIngredientesActionPerformed(evt);
+            }
+        });
 
         buttonEventos.setText("Eventos");
 
-        buttonUsuarios.setText("Usuários");
-
         buttonSair.setText("Sair");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
 
         buttonFornecedor.setText("Fornecedor");
         buttonFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +82,8 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        buttonUsuarios1.setText("Usuários");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -81,12 +91,12 @@ public class menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(165, 165, 165))
         );
@@ -99,15 +109,15 @@ public class menu extends javax.swing.JFrame {
                 .addComponent(buttonCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonIngredientes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(buttonFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
                 .addComponent(buttonEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(buttonUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
                 .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +138,6 @@ public class menu extends javax.swing.JFrame {
 
     private void buttonPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPizzaActionPerformed
         new viewPizza().setVisible(true);
-        this.dispose();
         
     }//GEN-LAST:event_buttonPizzaActionPerformed
 
@@ -140,6 +149,14 @@ public class menu extends javax.swing.JFrame {
     private void buttonFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFornecedorActionPerformed
        new viewFornecedor().setVisible(true);
     }//GEN-LAST:event_buttonFornecedorActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
+
+    private void buttonIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIngredientesActionPerformed
+        new viewIngrediente().setVisible(true);
+    }//GEN-LAST:event_buttonIngredientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +200,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton buttonIngredientes;
     private javax.swing.JButton buttonPizza;
     private javax.swing.JButton buttonSair;
-    private javax.swing.JButton buttonUsuarios;
+    private javax.swing.JButton buttonUsuarios1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

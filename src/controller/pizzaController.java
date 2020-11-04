@@ -30,7 +30,7 @@ public class pizzaController {
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, pizza.getNome());
                 stmt.setString(2, pizza.getDetalhes());
-                stmt.setInt(3, pizza.getStatus());
+                stmt.setBoolean(3, pizza.getStatus());
                 stmt.execute();
                 stmt.close();
                 JOptionPane.showMessageDialog(null, "Inserido com sucesso");
@@ -47,13 +47,31 @@ public class pizzaController {
                 
                 stmt.setString(1, pizza.getNome());
                 stmt.setString(2, pizza.getDetalhes());
-                stmt.setInt(3, pizza.getStatus());
+                stmt.setBoolean(3, pizza.getStatus());
                 stmt.execute();
                 stmt.close();
                 JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
         } 
         catch (SQLException u) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar "+u);
+        }
+    }
+    
+    public void excluir(pizza pizza) {
+        try {
+            String sql;
+            if (!String.valueOf(pizza.getId()).isEmpty()) {
+                sql = "DELETE FROM pizza WHERE id= ?";
+                PreparedStatement stmt = connection.prepareStatement(sql);
+
+                stmt.setInt(1, pizza.getId());
+                stmt.execute();
+                stmt.close();
+                JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+            }
+        } catch (SQLException e) {
+             e.getMessage();
+            JOptionPane.showMessageDialog(null, "Erro ao deletar");
         }
     }
     
@@ -73,7 +91,7 @@ public class pizzaController {
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
                 p.setDetalhes(rs.getString("detalhes"));
-                p.setStatus(rs.getInt("status"));
+                p.setStatus(rs.getBoolean("status"));
                 dado.add(p);
 
             }
@@ -91,25 +109,30 @@ public class pizzaController {
 
     }
     
-       public pizza buscar(String busca) {
+       public ArrayList<pizza> buscar(pizza pizza) {
         try {
-            pizza ret = new pizza(); 
-            String sql = "SELECT * FROM pizza WHERE nome or detalhes LIKE '%" + busca + "%' ";
-
+             
+            
+            String sql = "SELECT * FROM pizza WHERE nome LIKE '%" + pizza.getNome() + "%' or detalhes LIKE '%" + pizza.getDetalhes()+ "%' ";
+            
+            ArrayList dado = new ArrayList();
+            
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                pizza ret = new pizza();
                 ret.setId(rs.getInt("id"));
                 ret.setNome(rs.getString("nome"));
                 ret.setDetalhes(rs.getString("detalhes"));
-                ret.setStatus(rs.getInt("status"));
+                ret.setStatus(rs.getBoolean("status"));
+                dado.add(ret);
             }
             ps.close();
             rs.close();
             connection.close();
-            JOptionPane.showMessageDialog(null, ret.getNome());
-            return ret;
+            return dado;
+            
         } catch (SQLException e) {
             e.getMessage();
             JOptionPane.showMessageDialog(null, "Erro preencher o ArrayList");

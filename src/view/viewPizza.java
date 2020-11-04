@@ -45,17 +45,23 @@ public class viewPizza extends javax.swing.JFrame {
         Nome = new javax.swing.JLabel();
         buttonNovo = new javax.swing.JButton();
         buttonAlterar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        buttonExcluir = new javax.swing.JButton();
         buttonPesquisar = new javax.swing.JButton();
         textBusca = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         textID = new javax.swing.JTextField();
         checkAtivo = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +103,12 @@ public class viewPizza extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Excluir");
+        buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
 
         buttonPesquisar.setText("Pesquisar");
         buttonPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +129,13 @@ public class viewPizza extends javax.swing.JFrame {
 
         jLabel3.setText("Status");
 
+        jButton1.setText("Limpar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,8 +154,10 @@ public class viewPizza extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(textBusca)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -180,7 +200,8 @@ public class viewPizza extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                     .addComponent(buttonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +232,7 @@ public class viewPizza extends javax.swing.JFrame {
             pizzaController pc = new pizzaController();
             p.setNome(textNome.getText());
             p.setDetalhes(textDetalhes.getText());
-            p.setStatus(1);
+            p.setStatus(true);
             pc.cadastrar(p);
         }
         this.atualizaTabela();
@@ -222,44 +243,69 @@ public class viewPizza extends javax.swing.JFrame {
     }//GEN-LAST:event_textIDActionPerformed
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
-              pizzaController pc = new pizzaController();
-              pc.buscar(textBusca.getText());
-              this.atualizaTabela();
+            pizzaController pc = new pizzaController();
+            pizza p = new pizza();
+            p.setNome(textBusca.getText());
+            p.setDetalhes(textBusca.getText());
+            this.atualizarBusca(p);
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         tabela.addMouseListener(new MouseAdapter() {
-                                public void mouseClicked(MouseEvent arg0) {
-                                        int linha = tabela.getSelectedRow();
-                                        textID.setText(tabela.getValueAt(linha, 0).toString());
-                                        textNome.setText(tabela.getValueAt(linha, 1).toString());
-                                        textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
-                                   
-//                                        textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
-                                }
-                        });        // TODO add your handling code here:
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabela.getSelectedRow();
+                    textID.setText(tabela.getValueAt(linha, 0).toString());
+                    textNome.setText(tabela.getValueAt(linha, 1).toString());
+                    textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+            }
+        });        
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
             pizza p = new pizza();
 
-            if(textNome.equals("") || textDetalhes.equals("") ){
+            if(String.valueOf(textID.getText()).isEmpty()){
                 JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+                return;
             }else{
                 pizzaController pc = new pizzaController();
                 p.setId(Integer.parseInt(textID.getText()));
                 p.setNome(textNome.getText());
                 p.setDetalhes(textDetalhes.getText());
-                p.setStatus(0);
+                p.setStatus(false);
                 if(checkAtivo.isSelected()){
-                    p.setStatus(1);
+                    p.setStatus(true);
                 }
                 pc.alterar(p);
             }             
             
-            this.atualizaTabela();// TODO add your handling code here:
+            this.atualizaTabela();
+            this.limparTela();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        pizzaController pc = new pizzaController();
+        pizza p = new pizza();
+        
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "ID não pode ser vazio");
+            return;
+        }
+        p.setId(Integer.parseInt(textID.getText()));
+        pc.excluir(p);
+        this.limparTela();
+        this.atualizaTabela();
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.limparTela();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+                
     /**
      * @param args the command line arguments
      */
@@ -299,6 +345,16 @@ public class viewPizza extends javax.swing.JFrame {
      public void atualizaTabela(){
         tabela.setModel(new pizzaTableModel(new pizzaController().listarTodos()));
     }
+     public void atualizarBusca(pizza p){
+        tabela.setModel(new pizzaTableModel(new pizzaController().buscar(p)));
+    }
+     public void limparTela(){
+        textID.setText("");
+        textNome.setText("");
+        textDetalhes.setText("");
+        textBusca.setText("");
+        checkAtivo.setSelected(false);
+    }
      
     
      
@@ -306,10 +362,11 @@ public class viewPizza extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
     private javax.swing.JButton buttonAlterar;
+    private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonNovo;
     private javax.swing.JButton buttonPesquisar;
     private javax.swing.JCheckBox checkAtivo;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

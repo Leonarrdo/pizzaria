@@ -40,7 +40,7 @@ public class cardapio {
         this.detalhes = detalhes;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
