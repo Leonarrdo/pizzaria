@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/pizza.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/view/viewFornecedor.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/cardapioPizza.java</file>
@@ -21,6 +22,14 @@
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/controller/pizzaController.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/controller/loginController.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/ingrediente.java</file>
+=======
+            <file>file:/var/www/html/pizzaria/src/view/viewPizza.java</file>
+            <file>file:/var/www/html/pizzaria/src/view/menu.java</file>
+            <file>file:/var/www/html/pizzaria/src/view/login.java</file>
+            <file>file:/var/www/html/pizzaria/src/view/viewCardapio.java</file>
+            <file>file:/var/www/html/pizzaria/src/view/viewFornecedor.java</file>
+            <file>file:/var/www/html/pizzaria/src/view/viewIngrediente.java</file>
+>>>>>>> 4e5fc775cbcc978750427e25858bea94a3c0223e
         </group>
     </open-files>
 </project-private>
