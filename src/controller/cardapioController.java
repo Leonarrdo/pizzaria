@@ -59,19 +59,19 @@ public class cardapioController {
     
     public void excluir(cardapio cardapio) {
         try {
-            String sql;
-            if (!String.valueOf(cardapio.getId()).isEmpty()) {
-                sql = "DELETE FROM cardapio WHERE id= ?";
+            int id = cardapio.getId();
+                String sql = "update cardapio set nome=?, detalhes=?, status=? where id="+id;
                 PreparedStatement stmt = connection.prepareStatement(sql);
-
-                stmt.setInt(1, cardapio.getId());
+                
+                stmt.setString(1, cardapio.getNome());
+                stmt.setString(2, cardapio.getDetalhes());
+                stmt.setBoolean(3, cardapio.getStatus());
                 stmt.execute();
                 stmt.close();
-                JOptionPane.showMessageDialog(null, "Deletado com sucesso");
-            }
-        } catch (SQLException e) {
-             e.getMessage();
-            JOptionPane.showMessageDialog(null, "Erro ao deletar");
+                JOptionPane.showMessageDialog(null, "deletado com sucesso");
+        } 
+        catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar "+u);
         }
     }
     
@@ -79,7 +79,7 @@ public class cardapioController {
     public ArrayList<cardapio> listarTodos() {
         try {
 
-            String sql = "SELECT * FROM cardapio";
+            String sql = "SELECT * FROM cardapio where status = 1";
 
             ArrayList dado = new ArrayList();
 
@@ -113,8 +113,8 @@ public class cardapioController {
         try {
              
             
-            String sql = "SELECT * FROM cardapio WHERE nome LIKE '%" + cardapio.getNome() + "%' or detalhes LIKE '%" + cardapio.getDetalhes()+ "%' ";
-            
+            String sql = "SELECT * FROM cardapio WHERE status = "+cardapio.getStatus()+" and nome LIKE '%" + cardapio.getNome() + "%'";
+
             ArrayList dado = new ArrayList();
             
             PreparedStatement ps = connection.prepareStatement(sql);

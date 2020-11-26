@@ -15,7 +15,9 @@ import model.cardapio;
 import model.cardapioTableModel;
 import model.cardapio;
 import model.cardapioTableModel;
-import model.cardapio;
+import controller.*;
+import java.util.ArrayList;
+import model.*;
 
 /**
  *
@@ -46,8 +48,6 @@ public class viewCardapio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        textDetalhes = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         buttonLimpar = new javax.swing.JButton();
@@ -59,18 +59,32 @@ public class viewCardapio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         buttonNovo1 = new javax.swing.JButton();
+        buttonVoltar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaPizzas = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaPizzaCardapio = new javax.swing.JTable();
+        buttonAdicionarPizzaCardapio = new javax.swing.JButton();
+        buttonRemoverPizzaCardapio = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 255));
 
+        textID.setEnabled(false);
+
         jLabel1.setText("Id");
 
         jLabel2.setText("Nome");
 
-        jLabel3.setText("Detalhes");
-
         checkAtivo.setText("Ativo");
+        checkAtivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAtivoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Status");
 
@@ -114,7 +128,7 @@ public class viewCardapio extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idi", "nome", "detalhes", "status"
+                "id", "nome", "detalhes", "status"
             }
         ));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,6 +145,54 @@ public class viewCardapio extends javax.swing.JFrame {
             }
         });
 
+        buttonVoltar.setText("Voltar");
+        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltarActionPerformed(evt);
+            }
+        });
+
+        tabelaPizzas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaPizzas);
+
+        tabelaPizzaCardapio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Descrição", "Status"
+            }
+        ));
+        jScrollPane3.setViewportView(tabelaPizzaCardapio);
+
+        buttonAdicionarPizzaCardapio.setText("Adicionar ao Cardapio");
+        buttonAdicionarPizzaCardapio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdicionarPizzaCardapioActionPerformed(evt);
+            }
+        });
+
+        buttonRemoverPizzaCardapio.setText("Remover");
+        buttonRemoverPizzaCardapio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoverPizzaCardapioActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Pizzas Disponíveis");
+
+        jLabel5.setText("Pizzas do Cardápio Selecionado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,40 +200,48 @@ public class viewCardapio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
+                            .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104)
+                        .addComponent(buttonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textBusca))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonAdicionarPizzaCardapio, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(buttonRemoverPizzaCardapio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -180,45 +250,60 @@ public class viewCardapio extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel5))
+                .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonAdicionarPizzaCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonRemoverPizzaCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(buttonLimpar)
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonNovo)
+                    .addComponent(buttonNovo1)
+                    .addComponent(buttonExcluir))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        int idCardapio=0;
+        int idPizzaAdd=0;
+        int idPizzaRemover=0;
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         cardapioController pc = new cardapioController();
@@ -242,19 +327,21 @@ public class viewCardapio extends javax.swing.JFrame {
          cardapioController pc = new cardapioController();
             cardapio p = new cardapio();
             p.setNome(textBusca.getText());
-            p.setDetalhes(textBusca.getText());
+            p.setStatus(false);
+            if(checkAtivo.isSelected()){
+                p.setStatus(true);
+            }
             this.atualizarBusca(p);
     }//GEN-LAST:event_buttonBuscaActionPerformed
 
     private void buttonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoActionPerformed
         cardapio p = new cardapio();
       
-        if(textNome.equals("") || textDetalhes.equals("")){
+        if(textNome.equals("")){
             JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
         }else{
             cardapioController pc = new cardapioController();
-            p.setNome(textNome.getText());
-            p.setDetalhes(textDetalhes.getText());
+            p.setNome(textNome.getText());;
             p.setStatus(true);
             pc.cadastrar(p);
         }
@@ -268,9 +355,28 @@ public class viewCardapio extends javax.swing.JFrame {
                     int linha = tabela.getSelectedRow();
                     textID.setText(tabela.getValueAt(linha, 0).toString());
                     textNome.setText(tabela.getValueAt(linha, 1).toString());
-                    textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+                    String marcado = tabela.getValueAt(linha, 3).toString();
+                    if(marcado=="true"){
+                        checkAtivo.setSelected(true);
+                    }
+                    cardapioXpizza cp = new cardapioXpizza();
+                    cp.setIdCardapio(Integer.parseInt(tabela.getValueAt(linha, 0).toString()));
+                    carregaTabelaCardapioPizza(cp);
+                    idCardapio = cp.getIdCardapio();
             }
         }); 
+       tabelaPizzas.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabelaPizzas.getSelectedRow();
+                    idPizzaAdd = Integer.parseInt(tabelaPizzas.getValueAt(linha, 0).toString()); 
+            }
+        });
+       tabelaPizzaCardapio.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabelaPizzaCardapio.getSelectedRow();
+                    idPizzaRemover = Integer.parseInt(tabelaPizzaCardapio.getValueAt(linha, 0).toString());                
+            }
+        });
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
@@ -283,8 +389,7 @@ public class viewCardapio extends javax.swing.JFrame {
                 cardapioController pc = new cardapioController();
                 p.setId(Integer.parseInt(textID.getText()));
                 p.setNome(textNome.getText());
-                p.setDetalhes(textDetalhes.getText());
-                
+                p.setStatus(false);
                 if(checkAtivo.isSelected()){
                     p.setStatus(true);
                 }
@@ -296,9 +401,68 @@ public class viewCardapio extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovo1ActionPerformed
-        // FAZER LOGICA DE VISUALIZAÇÃO
-        new cardapiosFinalizados().setVisible(true);
+        cardapioXpizza cp = new cardapioXpizza();
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(this, "Selecione um cardapio");
+            return;
+        }
+        cp.setIdCardapio(Integer.parseInt(textID.getText()));
+        cardapiosFinalizados viewFinalizados = new cardapiosFinalizados();
+        viewFinalizados.setVisible(true);
+        viewFinalizados.setCardapioNome(textNome.getText());
+        viewFinalizados.carregarCardapio(cp);
     }//GEN-LAST:event_buttonNovo1ActionPerformed
+
+    private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_buttonVoltarActionPerformed
+
+    private void checkAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAtivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkAtivoActionPerformed
+
+    private void buttonAdicionarPizzaCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarPizzaCardapioActionPerformed
+        if(idPizzaAdd <= 0){
+            JOptionPane.showMessageDialog(null, "Escolha uma Pizza para adicionar");
+            return;
+        }
+        if(idCardapio <=0){
+            JOptionPane.showMessageDialog(null, "Escolha um Cardápio para adicionar");
+            return;
+        }
+        cardapioXpizzaController cxc = new cardapioXpizzaController();
+        cardapioXpizza cp = new cardapioXpizza();
+        cp.setIdCardapio(idCardapio);
+        cp.setIdPizza(idPizzaAdd);
+        
+        if(verificaExiste(cp)){
+            cxc.cadastrar(cp); 
+            carregaTabelaCardapioPizza(cp);
+            idPizzaAdd=0;
+        }else{
+            JOptionPane.showMessageDialog(null, "Pizza já existe no cardápio selecionado");
+        }
+        
+    }//GEN-LAST:event_buttonAdicionarPizzaCardapioActionPerformed
+
+    private void buttonRemoverPizzaCardapioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverPizzaCardapioActionPerformed
+        if(idPizzaRemover <= 0){
+            JOptionPane.showMessageDialog(null, "Escolha uma Pizza para remover");
+            return;
+        }
+        if(idCardapio <=0){
+            JOptionPane.showMessageDialog(null, "Escolha um Cardápio para adicionar");
+            return;
+        }
+        
+        cardapioXpizzaController cxc = new cardapioXpizzaController();
+        cardapioXpizza cp = new cardapioXpizza();
+        cp.setIdCardapio(idCardapio);
+        cp.setIdPizza(idPizzaRemover);
+        cxc.excluir(cp); 
+        carregaTabelaCardapioPizza(cp);
+        idPizzaAdd=0;
+    }//GEN-LAST:event_buttonRemoverPizzaCardapioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,38 +500,54 @@ public class viewCardapio extends javax.swing.JFrame {
         });
     }
     
-    
     public void atualizaTabela(){
         tabela.setModel(new cardapioTableModel(new cardapioController().listarTodos()));
+        tabelaPizzas.setModel(new pizzaTableModel(new pizzaController().listarTodos()));
     }
+    
+    public void carregaTabelaCardapioPizza(cardapioXpizza p){
+        tabelaPizzaCardapio.setModel(new pizzaTableModel(new cardapioXpizzaController().buscar(p)));
+    }
+    
+    public boolean verificaExiste(cardapioXpizza p){
+        cardapioXpizzaController cxp = new cardapioXpizzaController();
+        return cxp.verificaExiste(p);
+    }
+    
      public void atualizarBusca(cardapio p){
         tabela.setModel(new cardapioTableModel(new cardapioController().buscar(p)));
     }
      public void limparTela(){
         textID.setText("");
         textNome.setText("");
-        textDetalhes.setText("");
         textBusca.setText("");
         checkAtivo.setSelected(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAdicionarPizzaCardapio;
     private javax.swing.JButton buttonBusca;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonNovo;
     private javax.swing.JButton buttonNovo1;
+    private javax.swing.JButton buttonRemoverPizzaCardapio;
+    private javax.swing.JButton buttonVoltar;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabela;
+    private javax.swing.JTable tabelaPizzaCardapio;
+    private javax.swing.JTable tabelaPizzas;
     private javax.swing.JTextField textBusca;
-    private javax.swing.JTextField textDetalhes;
     private javax.swing.JTextField textID;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables

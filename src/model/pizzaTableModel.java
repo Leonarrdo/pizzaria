@@ -18,6 +18,7 @@ package model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import model.pizza;
+import view.viewCardapio;
 
 /**
  *

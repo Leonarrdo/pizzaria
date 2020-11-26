@@ -59,19 +59,19 @@ public class pizzaController {
     
     public void excluir(pizza pizza) {
         try {
-            String sql;
-            if (!String.valueOf(pizza.getId()).isEmpty()) {
-                sql = "DELETE FROM pizza WHERE id= ?";
+            int id = pizza.getId();
+            String sql = "update pizza set nome=?, detalhes=?, status=? where id="+id;
                 PreparedStatement stmt = connection.prepareStatement(sql);
-
-                stmt.setInt(1, pizza.getId());
+                
+                stmt.setString(1, pizza.getNome());
+                stmt.setString(2, pizza.getDetalhes());
+                stmt.setBoolean(3, pizza.getStatus());
                 stmt.execute();
                 stmt.close();
-                JOptionPane.showMessageDialog(null, "Deletado com sucesso");
-            }
-        } catch (SQLException e) {
-             e.getMessage();
-            JOptionPane.showMessageDialog(null, "Erro ao deletar");
+                JOptionPane.showMessageDialog(null, "Pizza deletada com sucesso");
+        } 
+        catch (SQLException u) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar pizza "+u);
         }
     }
     
@@ -79,7 +79,7 @@ public class pizzaController {
     public ArrayList<pizza> listarTodos() {
         try {
 
-            String sql = "SELECT * FROM pizza";
+            String sql = "SELECT * FROM pizza where status = 1";
 
             ArrayList dado = new ArrayList();
 
@@ -113,8 +113,7 @@ public class pizzaController {
         try {
              
             
-            String sql = "SELECT * FROM pizza WHERE nome LIKE '%" + pizza.getNome() + "%' or detalhes LIKE '%" + pizza.getDetalhes()+ "%' ";
-            
+            String sql = "SELECT * FROM pizza WHERE status = "+pizza.getStatus()+" and nome LIKE '%" + pizza.getNome() + "%'";
             ArrayList dado = new ArrayList();
             
             PreparedStatement ps = connection.prepareStatement(sql);

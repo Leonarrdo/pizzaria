@@ -5,18 +5,12 @@
  */
 package view;
 
-import controller.cardapioController;
-import controller.cardapioController;
-import controller.cardapioController;
+import controller.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import model.cardapio;
-import model.cardapioTableModel;
-import model.cardapio;
-import model.cardapioTableModel;
-import model.cardapio;
-
+import model.*;
 /**
  *
  * @author Leonardo
@@ -46,7 +40,7 @@ public class viewIngrediente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        textDetalhes = new javax.swing.JTextField();
+        textUnidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -59,6 +53,8 @@ public class viewIngrediente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         buttonNovo1 = new javax.swing.JButton();
+        comboFornecedor = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +64,7 @@ public class viewIngrediente extends javax.swing.JFrame {
 
         jLabel2.setText("Nome");
 
-        jLabel3.setText("Detalhes");
+        jLabel3.setText("Unidade");
 
         checkAtivo.setText("Ativo");
 
@@ -131,6 +127,10 @@ public class viewIngrediente extends javax.swing.JFrame {
             }
         });
 
+        comboFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("Fornecedor");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,11 +147,15 @@ public class viewIngrediente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,14 +186,17 @@ public class viewIngrediente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFornecedor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -221,8 +228,8 @@ public class viewIngrediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        cardapioController pc = new cardapioController();
-        cardapio p = new cardapio();
+        ingredienteController pc = new ingredienteController();
+        ingrediente p = new ingrediente();
         
         if(String.valueOf(textID.getText()).isEmpty()){
             JOptionPane.showMessageDialog(null, "ID não pode ser vazio");
@@ -239,22 +246,23 @@ public class viewIngrediente extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLimparActionPerformed
 
     private void buttonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscaActionPerformed
-         cardapioController pc = new cardapioController();
-            cardapio p = new cardapio();
+         ingredienteController pc = new ingredienteController();
+            ingrediente p = new ingrediente();
             p.setNome(textBusca.getText());
-            p.setDetalhes(textBusca.getText());
+            p.setUnidade(textBusca.getText());
             this.atualizarBusca(p);
     }//GEN-LAST:event_buttonBuscaActionPerformed
 
     private void buttonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoActionPerformed
-        cardapio p = new cardapio();
+        ingrediente p = new ingrediente();
       
-        if(textNome.equals("") || textDetalhes.equals("")){
+        if(textNome.equals("") || textUnidade.equals("")){
             JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
         }else{
-            cardapioController pc = new cardapioController();
+            ingredienteController pc = new ingredienteController();
             p.setNome(textNome.getText());
-            p.setDetalhes(textDetalhes.getText());
+            p.setUnidade(textUnidade.getText());
+            
             p.setStatus(true);
             pc.cadastrar(p);
         }
@@ -268,22 +276,22 @@ public class viewIngrediente extends javax.swing.JFrame {
                     int linha = tabela.getSelectedRow();
                     textID.setText(tabela.getValueAt(linha, 0).toString());
                     textNome.setText(tabela.getValueAt(linha, 1).toString());
-                    textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+                    textUnidade.setText(tabela.getValueAt(linha, 2).toString());
             }
         }); 
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-            cardapio p = new cardapio();
+            ingrediente p = new ingrediente();
 
             if(String.valueOf(textID.getText()).isEmpty()){
                 JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
                 return;
             }else{
-                cardapioController pc = new cardapioController();
+                ingredienteController pc = new ingredienteController();
                 p.setId(Integer.parseInt(textID.getText()));
                 p.setNome(textNome.getText());
-                p.setDetalhes(textDetalhes.getText());
+                p.setUnidade(textUnidade.getText());
                 
                 if(checkAtivo.isSelected()){
                     p.setStatus(true);
@@ -297,7 +305,7 @@ public class viewIngrediente extends javax.swing.JFrame {
 
     private void buttonNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovo1ActionPerformed
         // FAZER LOGICA DE VISUALIZAÇÃO
-        new cardapiosFinalizados().setVisible(true);
+//        new ingredientesFinalizados().setVisible(true);
     }//GEN-LAST:event_buttonNovo1ActionPerformed
 
     /**
@@ -340,15 +348,20 @@ public class viewIngrediente extends javax.swing.JFrame {
     
     
     public void atualizaTabela(){
-        tabela.setModel(new cardapioTableModel(new cardapioController().listarTodos()));
+        tabela.setModel(new ingredienteTableModel(new ingredienteController().listarTodos()));
     }
-     public void atualizarBusca(cardapio p){
-        tabela.setModel(new cardapioTableModel(new cardapioController().buscar(p)));
+    public void atualizarBusca(ingrediente p){
+        tabela.setModel(new ingredienteTableModel(new ingredienteController().buscar(p)));
     }
+    public void atualizarBusca(){
+//        tabela.setModel(new ingredienteTableModel(new ingredienteController().buscar(p)));
+//        comboFornecedor.setModel(new DefaultComboBoxModel(new fornecedorController().));
+    }
+     
      public void limparTela(){
         textID.setText("");
         textNome.setText("");
-        textDetalhes.setText("");
+        textUnidade.setText("");
         textBusca.setText("");
         checkAtivo.setSelected(false);
     }
@@ -361,16 +374,18 @@ public class viewIngrediente extends javax.swing.JFrame {
     private javax.swing.JButton buttonNovo;
     private javax.swing.JButton buttonNovo1;
     private javax.swing.JCheckBox checkAtivo;
+    private javax.swing.JComboBox<String> comboFornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     private javax.swing.JTextField textBusca;
-    private javax.swing.JTextField textDetalhes;
     private javax.swing.JTextField textID;
     private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textUnidade;
     // End of variables declaration//GEN-END:variables
 }

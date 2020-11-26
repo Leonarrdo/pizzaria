@@ -5,6 +5,9 @@
  */
 package view;
 
+import controller.cardapioXpizzaController;
+import controller.ingredienteController;
+import controller.ingredienteXpizzaController;
 import controller.pizzaController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,10 +41,8 @@ public class viewPizza extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         textNome = new javax.swing.JTextField();
-        textDetalhes = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         Nome = new javax.swing.JLabel();
         buttonNovo = new javax.swing.JButton();
         buttonAlterar = new javax.swing.JButton();
@@ -53,6 +54,17 @@ public class viewPizza extends javax.swing.JFrame {
         checkAtivo = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaIngredientePizza = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelaIngredienteLista = new javax.swing.JTable();
+        buttonAdicionarIngrediente = new javax.swing.JButton();
+        buttonRemoverIngrediente = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        buttonVoltar = new javax.swing.JButton();
+        textDetalhes = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +72,12 @@ public class viewPizza extends javax.swing.JFrame {
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
+            }
+        });
+
+        textNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNomeActionPerformed(evt);
             }
         });
 
@@ -84,8 +102,6 @@ public class viewPizza extends javax.swing.JFrame {
             tabela.getColumnModel().getColumn(2).setResizable(false);
             tabela.getColumnModel().getColumn(3).setResizable(false);
         }
-
-        jLabel1.setText("Detalhes");
 
         Nome.setText("Nome");
 
@@ -119,6 +135,7 @@ public class viewPizza extends javax.swing.JFrame {
 
         jLabel2.setText("Id");
 
+        textID.setEditable(false);
         textID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textIDActionPerformed(evt);
@@ -136,77 +153,163 @@ public class viewPizza extends javax.swing.JFrame {
             }
         });
 
+        tabelaIngredientePizza.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Unidade", "Fornecedor", "Status"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaIngredientePizza);
+
+        tabelaIngredienteLista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "nome", "unidade", "idFornecedor", "status"
+            }
+        ));
+        jScrollPane3.setViewportView(tabelaIngredienteLista);
+
+        buttonAdicionarIngrediente.setText("Adicionar Ingrediente");
+        buttonAdicionarIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdicionarIngredienteActionPerformed(evt);
+            }
+        });
+
+        buttonRemoverIngrediente.setText("Remover Ingrediente");
+
+        jLabel4.setText("Ingrediente Disponíveis");
+
+        jLabel5.setText("Ingredientes da Pizza selecionada");
+
+        buttonVoltar.setText("Voltar");
+        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltarActionPerformed(evt);
+            }
+        });
+
+        textDetalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDetalhesActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Detalhes");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(textBusca)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textBusca))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Nome)
-                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(buttonRemoverIngrediente)
+                                            .addComponent(buttonAdicionarIngrediente)))
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Nome))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(textDetalhes))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nome)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Nome)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(buttonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonAdicionarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137)
+                        .addComponent(buttonRemoverIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(buttonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,11 +320,95 @@ public class viewPizza extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    int idPizza=0;
+    int idIngredienteRemove=0;
+    int idIngredienteAdd=0;
+    
+    private void textDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDetalhesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textDetalhesActionPerformed
+
+    private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
+        // TODO add your handling code here:
+                this.dispose();
+
+    }//GEN-LAST:event_buttonVoltarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.limparTela();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void textIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textIDActionPerformed
+
+    private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
+        pizzaController pc = new pizzaController();
+        pizza p = new pizza();
+        p.setNome(textBusca.getText());
+        p.setDetalhes(textBusca.getText());
+        p.setStatus(false);
+        if(checkAtivo.isSelected()){
+            p.setStatus(true);
+        }
+        this.atualizarBusca(p);
+    }//GEN-LAST:event_buttonPesquisarActionPerformed
+
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+        pizzaController pc = new pizzaController();
+        pizza p = new pizza();
+
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+            return;
+        }else{
+            p.setId(Integer.parseInt(textID.getText()));
+            p.setNome(textNome.getText());
+            p.setDetalhes(textDetalhes.getText());
+            p.setStatus(false);
+            if(checkAtivo.isSelected()){
+                p.setStatus(true);
+            }
+            pc.excluir(p);
+        }
+
+        this.limparTela();
+        this.atualizaTabela();
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
+        pizza p = new pizza();
+
+        if(String.valueOf(textID.getText()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+            return;
+        }else{
+            pizzaController pc = new pizzaController();
+            p.setId(Integer.parseInt(textID.getText()));
+            p.setNome(textNome.getText());
+            p.setDetalhes(textDetalhes.getText());
+            p.setStatus(false);
+            if(checkAtivo.isSelected()){
+                p.setStatus(true);
+            }
+            pc.alterar(p);
+        }
+
+        this.atualizaTabela();
+        this.limparTela();
+    }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoActionPerformed
         pizza p = new pizza();
@@ -238,72 +425,60 @@ public class viewPizza extends javax.swing.JFrame {
         this.atualizaTabela();
     }//GEN-LAST:event_buttonNovoActionPerformed
 
-    private void textIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDActionPerformed
-                    // TODO add your handling code here:
-    }//GEN-LAST:event_textIDActionPerformed
-
-    private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
-            pizzaController pc = new pizzaController();
-            pizza p = new pizza();
-            p.setNome(textBusca.getText());
-            p.setDetalhes(textBusca.getText());
-            this.atualizarBusca(p);
-    }//GEN-LAST:event_buttonPesquisarActionPerformed
-
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         tabela.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent arg0) {
-                    int linha = tabela.getSelectedRow();
-                    textID.setText(tabela.getValueAt(linha, 0).toString());
-                    textNome.setText(tabela.getValueAt(linha, 1).toString());
-                    textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+                int linha = tabela.getSelectedRow();
+                textID.setText(tabela.getValueAt(linha, 0).toString());
+                textNome.setText(tabela.getValueAt(linha, 1).toString());
+                textDetalhes.setText(tabela.getValueAt(linha, 2).toString());
+                String marcado = tabela.getValueAt(linha, 3).toString();
+                    if(marcado=="true"){
+                        checkAtivo.setSelected(true);
+                    }
+                ingredienteXpizza cp = new ingredienteXpizza();
+                cp.setIdPizza(Integer.parseInt(tabela.getValueAt(linha, 0).toString()));
+                carregarTabelaIngredientePizza(cp);
+                idPizza = cp.getIdPizza();
             }
-        });        
+        });
+        tabelaIngredienteLista.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabelaIngredienteLista.getSelectedRow();
+                    idIngredienteAdd = Integer.parseInt(tabelaIngredienteLista.getValueAt(linha, 0).toString()); 
+            }
+        });
+       tabelaIngredientePizza.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent arg0) {
+                    int linha = tabelaIngredientePizza.getSelectedRow();
+                    idIngredienteRemove = Integer.parseInt(tabelaIngredientePizza.getValueAt(linha, 0).toString());                
+            }
+        });
     }//GEN-LAST:event_tabelaMouseClicked
 
-    private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
-            pizza p = new pizza();
+    private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNomeActionPerformed
 
-            if(String.valueOf(textID.getText()).isEmpty()){
-                JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
-                return;
-            }else{
-                pizzaController pc = new pizzaController();
-                p.setId(Integer.parseInt(textID.getText()));
-                p.setNome(textNome.getText());
-                p.setDetalhes(textDetalhes.getText());
-                p.setStatus(false);
-                if(checkAtivo.isSelected()){
-                    p.setStatus(true);
-                }
-                pc.alterar(p);
-            }             
-            
-            this.atualizaTabela();
-            this.limparTela();
-    }//GEN-LAST:event_buttonAlterarActionPerformed
-
-    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        pizzaController pc = new pizzaController();
-        pizza p = new pizza();
-        
-        if(String.valueOf(textID.getText()).isEmpty()){
-            JOptionPane.showMessageDialog(null, "ID não pode ser vazio");
+    private void buttonAdicionarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarIngredienteActionPerformed
+        if(idPizza <=0){
+            JOptionPane.showMessageDialog(null, "Escolha um Pizza para adicionar");
             return;
         }
-        p.setId(Integer.parseInt(textID.getText()));
-        pc.excluir(p);
-        this.limparTela();
-        this.atualizaTabela();
-    }//GEN-LAST:event_buttonExcluirActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.limparTela();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-
-    }//GEN-LAST:event_jPanel1MouseClicked
+        if(idIngredienteAdd <= 0){
+            JOptionPane.showMessageDialog(null, "Escolha um Ingrediente para adicionar");
+            return;
+        }
+        
+        
+        ingredienteXpizzaController cxc = new ingredienteXpizzaController();
+        ingredienteXpizza cp = new ingredienteXpizza();
+        cp.setIdPizza(idPizza);
+        cp.setIdIngrediente(idIngredienteAdd);
+        cxc.cadastrar(cp); 
+        carregarTabelaIngredientePizza(cp);
+        idIngredienteAdd=0;
+    }//GEN-LAST:event_buttonAdicionarIngredienteActionPerformed
 
                 
     /**
@@ -344,7 +519,13 @@ public class viewPizza extends javax.swing.JFrame {
     
      public void atualizaTabela(){
         tabela.setModel(new pizzaTableModel(new pizzaController().listarTodos()));
+        tabelaIngredienteLista.setModel(new ingredienteTableModel(new ingredienteController().listarTodos()));
+        
     }
+    public void carregarTabelaIngredientePizza(ingredienteXpizza i){
+       tabelaIngredientePizza.setModel(new ingredienteTableModel(new ingredienteXpizzaController().buscar(i)));
+    }
+     
      public void atualizarBusca(pizza p){
         tabela.setModel(new pizzaTableModel(new pizzaController().buscar(p)));
     }
@@ -361,18 +542,27 @@ public class viewPizza extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nome;
+    private javax.swing.JButton buttonAdicionarIngrediente;
     private javax.swing.JButton buttonAlterar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonNovo;
     private javax.swing.JButton buttonPesquisar;
+    private javax.swing.JButton buttonRemoverIngrediente;
+    private javax.swing.JButton buttonVoltar;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabela;
+    private javax.swing.JTable tabelaIngredienteLista;
+    private javax.swing.JTable tabelaIngredientePizza;
     private javax.swing.JTextField textBusca;
     private javax.swing.JTextField textDetalhes;
     private javax.swing.JTextField textID;
