@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/eventoTableModel.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/controller/eventoController.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/pizzaria/Pizzaria.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/evento.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/view/viewPizza.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/controller/cardapioController.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/view/menu.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/model/cardapioTableModel.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/view/viewCardapio.java</file>
+            <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/view/viewEvento.java</file>
             <file>file:/C:/Users/Leonardo/Documents/NetBeansProjects/pizzaria/src/controller/cardapioXpizzaController.java</file>
         </group>
     </open-files>

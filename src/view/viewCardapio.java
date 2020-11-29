@@ -68,6 +68,8 @@ public class viewCardapio extends javax.swing.JFrame {
         buttonRemoverPizzaCardapio = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        textDescricao = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,6 +195,8 @@ public class viewCardapio extends javax.swing.JFrame {
 
         jLabel5.setText("Pizzas do Cardápio Selecionado");
 
+        jLabel6.setText("Descrição");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,9 +210,13 @@ public class viewCardapio extends javax.swing.JFrame {
                             .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(textDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,13 +259,15 @@ public class viewCardapio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -339,22 +349,29 @@ public class viewCardapio extends javax.swing.JFrame {
       
         if(textNome.equals("")){
             JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
-        }else{
-            cardapioController pc = new cardapioController();
-            p.setNome(textNome.getText());;
-            p.setStatus(true);
-            pc.cadastrar(p);
+            return;
         }
+        if(textDescricao.equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+            return;
+        }
+        cardapioController pc = new cardapioController();
+        p.setNome(textNome.getText());;
+        p.setStatus(true);
+        p.setDetalhes(textDescricao.getText());
+        pc.cadastrar(p);
+        
         this.atualizaTabela();
         this.limparTela();
     }//GEN-LAST:event_buttonNovoActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-       tabela.addMouseListener(new MouseAdapter() {
+        tabela.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent arg0) {
                     int linha = tabela.getSelectedRow();
                     textID.setText(tabela.getValueAt(linha, 0).toString());
                     textNome.setText(tabela.getValueAt(linha, 1).toString());
+                    textDescricao.setText(tabela.getValueAt(linha, 2).toString());
                     String marcado = tabela.getValueAt(linha, 3).toString();
                     if(marcado=="true"){
                         checkAtivo.setSelected(true);
@@ -385,16 +402,25 @@ public class viewCardapio extends javax.swing.JFrame {
             if(String.valueOf(textID.getText()).isEmpty()){
                 JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
                 return;
-            }else{
-                cardapioController pc = new cardapioController();
-                p.setId(Integer.parseInt(textID.getText()));
-                p.setNome(textNome.getText());
-                p.setStatus(false);
-                if(checkAtivo.isSelected()){
-                    p.setStatus(true);
-                }
-                pc.alterar(p);
-            }             
+            }
+            if(String.valueOf(textNome.getText()).isEmpty()){
+                JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+                return;
+            }
+            if(String.valueOf(textDescricao.getText()).isEmpty()){
+               JOptionPane.showMessageDialog(null, "Verifique os dados Informados");
+               return;
+            }
+            cardapioController pc = new cardapioController();
+            p.setId(Integer.parseInt(textID.getText()));
+            p.setNome(textNome.getText());
+            p.setStatus(false);
+            p.setDetalhes(textDescricao.getText());
+            if(checkAtivo.isSelected()){
+                p.setStatus(true);
+            }
+            pc.alterar(p);
+                       
             
             this.atualizaTabela();
             this.limparTela();
@@ -521,6 +547,7 @@ public class viewCardapio extends javax.swing.JFrame {
         textID.setText("");
         textNome.setText("");
         textBusca.setText("");
+        textDescricao.setText("");
         checkAtivo.setSelected(false);
     }
 
@@ -540,6 +567,7 @@ public class viewCardapio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -548,6 +576,7 @@ public class viewCardapio extends javax.swing.JFrame {
     private javax.swing.JTable tabelaPizzaCardapio;
     private javax.swing.JTable tabelaPizzas;
     private javax.swing.JTextField textBusca;
+    private javax.swing.JTextField textDescricao;
     private javax.swing.JTextField textID;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables

@@ -67,6 +67,11 @@ public class menu extends javax.swing.JFrame {
         });
 
         buttonEventos.setText("Eventos");
+        buttonEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEventosActionPerformed(evt);
+            }
+        });
 
         buttonSair.setText("Sair");
         buttonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +162,10 @@ public class menu extends javax.swing.JFrame {
     private void buttonIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIngredientesActionPerformed
         new viewIngrediente().setVisible(true);
     }//GEN-LAST:event_buttonIngredientesActionPerformed
+
+    private void buttonEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEventosActionPerformed
+        new viewEvento().setVisible(true);
+    }//GEN-LAST:event_buttonEventosActionPerformed
 
     /**
      * @param args the command line arguments
