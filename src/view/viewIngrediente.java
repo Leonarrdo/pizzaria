@@ -5,25 +5,38 @@
  */
 package view;
 
+<<<<<<< HEAD
 import controller.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.*;
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
 /**
  *
  * @author Leonardo
  */
+<<<<<<< HEAD
 public class viewIngrediente extends javax.swing.JFrame {
+=======
+public class viewCardapio extends javax.swing.JFrame {
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
 
     /**
      * Creates new form teste
      */
+<<<<<<< HEAD
     public viewIngrediente() {
         initComponents();
         setLocationRelativeTo(null);
         this.atualizaTabela();
+=======
+    public viewCardapio() {
+        initComponents();
+        setLocationRelativeTo(null);
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
     }
 
     /**
@@ -35,12 +48,20 @@ public class viewIngrediente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         jPanel1 = new javax.swing.JPanel();
+=======
+        Fornecedor = new javax.swing.JPanel();
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         textID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+<<<<<<< HEAD
         textUnidade = new javax.swing.JTextField();
+=======
+        textDetalhes = new javax.swing.JTextField();
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         jLabel3 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -51,6 +72,7 @@ public class viewIngrediente extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         textBusca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
+<<<<<<< HEAD
         tabela = new javax.swing.JTable();
         buttonNovo1 = new javax.swing.JButton();
         comboFornecedor = new javax.swing.JComboBox<>();
@@ -59,6 +81,15 @@ public class viewIngrediente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 204, 255));
+=======
+        jTable1 = new javax.swing.JTable();
+        labelFornecedor = new javax.swing.JLabel();
+        boxFornecedor = new javax.swing.JComboBox<>();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Fornecedor.setBackground(new java.awt.Color(51, 204, 255));
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
 
         jLabel1.setText("Id");
 
@@ -71,6 +102,7 @@ public class viewIngrediente extends javax.swing.JFrame {
         jLabel4.setText("Status");
 
         buttonLimpar.setText("Limpar");
+<<<<<<< HEAD
         buttonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLimparActionPerformed(evt);
@@ -106,10 +138,23 @@ public class viewIngrediente extends javax.swing.JFrame {
         });
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
+=======
+
+        buttonBusca.setText("Pesquisar");
+
+        buttonEditar.setText("Editar");
+
+        buttonNovo.setText("Novo");
+
+        buttonExcluir.setText("Excluir");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
             new Object [][] {
 
             },
             new String [] {
+<<<<<<< HEAD
                 "idi", "nome", "detalhes", "status"
             }
         ));
@@ -183,10 +228,70 @@ public class viewIngrediente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
+                "id", "nome", "detalhes", "status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        labelFornecedor.setText("Fornecedor");
+
+        javax.swing.GroupLayout FornecedorLayout = new javax.swing.GroupLayout(Fornecedor);
+        Fornecedor.setLayout(FornecedorLayout);
+        FornecedorLayout.setHorizontalGroup(
+            FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FornecedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(FornecedorLayout.createSequentialGroup()
+                        .addComponent(buttonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FornecedorLayout.createSequentialGroup()
+                        .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FornecedorLayout.createSequentialGroup()
+                                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelFornecedor)
+                                    .addComponent(boxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(FornecedorLayout.createSequentialGroup()
+                                .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 114, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        FornecedorLayout.setVerticalGroup(
+            FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FornecedorLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
+<<<<<<< HEAD
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,22 +316,54 @@ public class viewIngrediente extends javax.swing.JFrame {
                     .addComponent(buttonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
+=======
+                    .addComponent(labelFornecedor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxFornecedor))
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(buttonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(FornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                .addContainerGap())
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+            .addComponent(Fornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
         ingredienteController pc = new ingredienteController();
         ingrediente p = new ingrediente();
@@ -308,6 +445,8 @@ public class viewIngrediente extends javax.swing.JFrame {
 //        new ingredientesFinalizados().setVisible(true);
     }//GEN-LAST:event_buttonNovo1ActionPerformed
 
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
     /**
      * @param args the command line arguments
      */
@@ -325,6 +464,7 @@ public class viewIngrediente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
+<<<<<<< HEAD
             java.util.logging.Logger.getLogger(viewIngrediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(viewIngrediente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -337,15 +477,32 @@ public class viewIngrediente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+=======
+            java.util.logging.Logger.getLogger(viewCardapio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(viewCardapio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(viewCardapio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(viewCardapio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+<<<<<<< HEAD
                 new viewIngrediente().setVisible(true);
+=======
+                new viewCardapio().setVisible(true);
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
             }
         });
     }
     
+<<<<<<< HEAD
     
     public void atualizaTabela(){
         tabela.setModel(new ingredienteTableModel(new ingredienteController().listarTodos()));
@@ -367,18 +524,31 @@ public class viewIngrediente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+=======
+    DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(strList.toArray());
+ comboBox.setModel(defaultComboBoxModel);
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Fornecedor;
+    private javax.swing.JComboBox<String> boxFornecedor;
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
     private javax.swing.JButton buttonBusca;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonNovo;
+<<<<<<< HEAD
     private javax.swing.JButton buttonNovo1;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JComboBox<String> comboFornecedor;
+=======
+    private javax.swing.JCheckBox checkAtivo;
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -387,5 +557,14 @@ public class viewIngrediente extends javax.swing.JFrame {
     private javax.swing.JTextField textID;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textUnidade;
+=======
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelFornecedor;
+    private javax.swing.JTextField textBusca;
+    private javax.swing.JTextField textDetalhes;
+    private javax.swing.JTextField textID;
+    private javax.swing.JTextField textNome;
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
     // End of variables declaration//GEN-END:variables
 }

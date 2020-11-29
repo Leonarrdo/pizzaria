@@ -23,17 +23,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+=======
+          <Component id="Fornecedor" alignment="0" max="32767" attributes="0"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+=======
+          <Component id="Fornecedor" min="-2" max="-2" attributes="0"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+<<<<<<< HEAD
     <Container class="javax.swing.JPanel" name="jPanel1">
+=======
+    <Container class="javax.swing.JPanel" name="Fornecedor">
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="33" type="rgb"/>
@@ -46,6 +58,19 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+=======
+                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="buttonLimpar" min="-2" pref="113" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonEditar" min="-2" pref="123" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buttonNovo" min="-2" pref="124" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="buttonExcluir" min="-2" pref="108" max="-2" attributes="0"/>
+                      </Group>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -55,6 +80,7 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <Component id="textNome" min="-2" pref="164" max="-2" attributes="0"/>
                                   </Group>
@@ -93,6 +119,34 @@
                           <Component id="buttonNovo1" min="-2" pref="123" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="buttonExcluir" min="-2" pref="121" max="-2" attributes="0"/>
+=======
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textNome" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="textDetalhes" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelFornecedor" min="-2" max="-2" attributes="0"/>
+                                      <Component id="boxFornecedor" min="-2" pref="221" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkAtivo" min="-2" pref="87" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="buttonBusca" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="textBusca" min="-2" pref="641" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -108,6 +162,7 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -138,6 +193,33 @@
                       <Component id="textBusca" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
+=======
+                      <Component id="labelFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="textID" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="textNome" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="textDetalhes" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="checkAtivo" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="boxFornecedor" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="224" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="buttonExcluir" pref="58" max="32767" attributes="0"/>
+                      <Component id="buttonEditar" max="32767" attributes="0"/>
+                      <Component id="buttonLimpar" max="32767" attributes="0"/>
+                      <Component id="buttonNovo" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="buttonBusca" max="32767" attributes="0"/>
+                      <Component id="textBusca" pref="54" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
               </Group>
           </Group>
         </DimensionLayout>
@@ -157,7 +239,11 @@
             <Property name="text" type="java.lang.String" value="Nome"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="textUnidade">
+=======
+        <Component class="javax.swing.JTextField" name="textDetalhes">
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -178,41 +264,56 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLimparActionPerformed"/>
           </Events>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JButton" name="buttonBusca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBuscaActionPerformed"/>
           </Events>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JButton" name="buttonEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditarActionPerformed"/>
           </Events>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JButton" name="buttonNovo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Novo"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonNovoActionPerformed"/>
           </Events>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JButton" name="buttonExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExcluirActionPerformed"/>
           </Events>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
         </Component>
         <Component class="javax.swing.JTextField" name="textBusca">
         </Component>
@@ -223,11 +324,19 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
+<<<<<<< HEAD
             <Component class="javax.swing.JTable" name="tabela">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
                     <Column editable="true" title="idi" type="java.lang.Object"/>
+=======
+            <Component class="javax.swing.JTable" name="jTable1">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="0">
+                    <Column editable="true" title="id" type="java.lang.Object"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
                     <Column editable="true" title="nome" type="java.lang.Object"/>
                     <Column editable="true" title="detalhes" type="java.lang.Object"/>
                     <Column editable="true" title="status" type="java.lang.Object"/>
@@ -261,6 +370,7 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+<<<<<<< HEAD
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaMouseClicked"/>
               </Events>
@@ -284,17 +394,34 @@
                 <StringItem index="2" value="Item 3"/>
                 <StringItem index="3" value="Item 4"/>
               </StringArray>
+=======
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="labelFornecedor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fornecedor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="boxFornecedor">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fornecedor"/>
           </Properties>
         </Component>
+=======
+>>>>>>> a4bfc0db77a2f0beef8fc011c50affddaab4e5b9
       </SubComponents>
     </Container>
   </SubComponents>
